@@ -21,14 +21,14 @@ namespace Pacman
         private void DisplayGrid()
         {
             grid = new Grid(columns,rows, cellSize,this);
-            var positions = grid.GetAllPositions();
+            var gridCells = grid.Cells;
 
-            for (int row = 0; row < positions.GetLength(1); row++)
+            for (int row = 0; row < gridCells.GetLength(1); row++)
             {
-                for (int column = 0; column < positions.GetLength(0); column++)
+                for (int column = 0; column < gridCells.GetLength(0); column++)
                 {
                     var g = GameObject.Instantiate(demoPrefab);
-                    g.transform.position = positions[column, row];
+                    g.transform.position = gridCells[column, row].WorldPosition;
                     g.transform.parent = gridParent;
                 }
             }
