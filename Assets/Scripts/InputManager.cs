@@ -1,18 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using Pacman;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public event Action<Direction> DirectionChangeCallback;
+    private void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            DirectionChangeCallback?.Invoke(Direction.Down);
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            DirectionChangeCallback?.Invoke(Direction.Up);
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            DirectionChangeCallback?.Invoke(Direction.Left);
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            DirectionChangeCallback?.Invoke(Direction.Right);
+        }
     }
 }
